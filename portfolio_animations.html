@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Animations</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <style>
+    /* Animation Keyframes */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes slideLeft {
+      from { opacity: 0; transform: translateX(30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes zoomIn {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* Animation Classes */
+    .animate-on-scroll {
+      opacity: 0;
+      transition: all 0.8s ease-out;
+    }
+    .animate-on-scroll.fade-in.visible {
+      animation: fadeIn 0.8s ease-out forwards;
+    }
+    .animate-on-scroll.slide-left.visible {
+      animation: slideLeft 0.8s ease-out forwards;
+    }
+    .animate-on-scroll.slide-up.visible {
+      animation: slideUp 0.8s ease-out forwards;
+    }
+    .animate-on-scroll.zoom-in.visible {
+      animation: zoomIn 0.8s ease-out forwards;
+    }
+
+    /* Ensure smooth performance on mobile */
+    @media (prefers-reduced-motion: reduce) {
+      .animate-on-scroll {
+        transition: none;
+        animation: none;
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
+  <!-- About Section Example -->
+  <section id="about" class="py-16 sm:py-20 bg-white dark:bg-gray-800">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12 animate-on-scroll slide-up flex items-center justify-center">
+        <i class="fas fa-user-circle text-indigo-500 mr-2"></i> About Me
+      </h2>
+      <div class="flex flex-col lg:flex-row items-center lg:items-start gap-12">
+        <!-- Left Column: Profile Image and Quote -->
+        <div class="lg:w-1/2 flex flex-col items-center">
+          <img src="https://media.licdn.com/dms/image/v2/D5603AQHeQyGKTGPS6A/profile-displayphoto-shrink_800_800/0/1695443825900?e=1751500800&v=beta&t=j-7RB9ILYBXLJ5EklI7mGXSS7a155ztxnFEwmMouauw" alt="Profile of Mackwin Joy Dsouza" class="rounded-full w-64 h-64 object-cover border-4 border-white shadow-lg animate-on-scroll zoom-in">
+          <div class="speech-bubble text-center animate-on-scroll fade-in">
+            <p class="text-base italic">"Driving business growth through strategic partnerships and client-focused solutions."</p>
+          </div>
+        </div>
+        <!-- Right Column: Key Points in Cards -->
+        <div class="lg:w-1/2 space-y-6">
+          <!-- Experience Card -->
+          <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg animate-on-scroll slide-left transition-all duration-300">
+            <div class="flex items-center mb-4">
+              <i class="fas fa-suitcase text-3xl text-blue-500 mr-3"></i>
+              <h3 class="text-xl font-semibold">Experience</h3>
+            </div>
+            <p class="text-base">1+ year as a Business Development Executive, generating 150+ B2B leads and conducting 50+ ERP software demos for C-level executives.</p>
+          </div>
+          <!-- Skills Card -->
+          <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg animate-on-scroll slide-left transition-all duration-300">
+            <div class="flex items-center mb-4">
+              <i class="fas fa-tools text-3xl text-green-500 mr-3"></i>
+              <h3 class="text-xl font-semibold">Skills</h3>
+            </div>
+            <p class="text-base">Proficient in Zoho and Odoo CRM, market analysis, cold calling, and strategic campaign collaboration for enhanced brand visibility.</p>
+          </div>
+          <!-- Achievements Card -->
+          <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg animate-on-scroll slide-left transition-all duration-300">
+            <div class="flex items-center mb-4">
+              <i class="fas fa-trophy text-3xl text-yellow-500 mr-3"></i>
+              <h3 class="text-xl font-semibold">Achievements</h3>
+            </div>
+            <p class="text-base">Increased client engagement by 40% through impactful presentations and refined sales strategies.</p>
+          </div>
+          <!-- Download Resume Button -->
+          <div class="text-center mt-6 animate-on-scroll fade-in">
+            <a href="resume.pdf" download class="bg-yellow-400 text-gray-800 px-6 py-3 rounded-full font-semibold transition-all duration-300 inline-flex items-center" aria-label="Download Resume">
+              <i class="fas fa-download mr-2"></i> Download Resume
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Intersection Observer for scroll-based animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          // Optionally unobserve after animation to improve performance
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1, // Trigger when 10% of element is visible
+      rootMargin: '0px 0px -50px 0px' // Slight offset for smoother trigger
+    });
+
+    // Apply observer to all elements with animate-on-scroll class
+    document.querySelectorAll('.animate-on-scroll').forEach(element => {
+      observer.observe(element);
+    });
+  </script>
+</body>
+</html>
