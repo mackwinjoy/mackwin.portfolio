@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mackwin Joy Dsouza - Business Development Portfolio</title>
-  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -89,7 +89,7 @@
     }
     .progress-fill {
       height: 100%;
-      background: linear-gradient(90deg, #0d9488, #1e3a8a);
+      background: linear-gradient(90deg, #4b5bd4, #6a1b9a);
       transition: width 1.5s ease-in-out;
     }
 
@@ -159,6 +159,7 @@
       background-position: center;
       background-repeat: no-repeat;
       position: relative;
+      background-attachment: scroll;
     }
     .bg-section::before {
       content: '';
@@ -177,17 +178,30 @@
 
     /* Chart Container */
     .chart-container {
-      width: 100%;
       max-width: 100%;
-      height: 300px;
+      width: 100%;
+      height: auto;
       padding: 1rem;
       margin: 0 auto;
       overflow: hidden;
+      box-sizing: border-box;
     }
     canvas {
-      width: 100% !important;
       max-width: 100%;
-      height: 100% !important;
+      height: auto !important;
+      width: 100% !important;
+    }
+
+    /* Separate Chart Section */
+    .chart-section {
+      margin-top: 1.5rem;
+      padding: 1rem;
+      background: #ffffff;
+      border-radius: 0.75rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .dark .chart-section {
+      background: #1f2937;
     }
 
     /* Lottie Animation Container */
@@ -199,23 +213,23 @@
     /* Mobile-Specific Adjustments */
     @media (max-width: 640px) {
       .bg-section {
-        background-size: cover;
-        background-position: center;
+        background-size: contain;
+        background-position: top;
         min-height: auto;
       }
       .hero-section {
         padding: 2rem 1rem;
-        min-height: 70vh;
+        min-height: 80vh;
       }
       .hero-section h1 {
-        font-size: 1.875rem;
+        font-size: 2.25rem;
         line-height: 1.2;
       }
       .hero-section p, .typed-text {
-        font-size: 1rem;
+        font-size: 1.125rem;
       }
       .section-padding {
-        padding: 2rem 1rem;
+        padding: 3rem 1rem;
       }
       .skills-grid {
         grid-template-columns: 1fr;
@@ -225,10 +239,10 @@
         position: absolute;
         top: 100%;
         left: 0;
-        background: #1e3a8a;
+        background: #1f2937;
       }
       .speech-bubble {
-        max-width: 180px;
+        max-width: 200px;
         padding: 0.75rem;
         font-size: 0.875rem;
       }
@@ -243,17 +257,20 @@
       }
       .chart-container {
         padding: 0.5rem;
-        height: 200px;
-        margin-bottom: 1rem;
+        margin: 0;
+      }
+      .chart-section {
+        padding: 0.5rem;
+        margin-top: 1rem;
       }
       .lottie-animation {
-        max-width: 120px;
+        max-width: 150px;
       }
       h2 {
-        font-size: 1.5rem;
+        font-size: 1.875rem;
       }
       h3 {
-        font-size: 1.125rem;
+        font-size: 1.25rem;
       }
       p, li {
         font-size: 0.875rem;
@@ -274,38 +291,56 @@
       object-fit: cover;
       object-position: center;
     }
+
+    /* Responsive Chart Adjustments */
+    @media (max-width: 768px) {
+      .chart-container {
+        padding: 0.5rem;
+      }
+      canvas {
+        max-height: 300px;
+      }
+    }
+    @media (max-width: 480px) {
+      .chart-container {
+        padding: 0.25rem;
+      }
+      canvas {
+        max-height: 250px;
+      }
+    }
   </style>
 </head>
 <body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 font-sans transition-colors duration-300">
   <!-- Navbar with Hamburger Menu -->
-  <nav class="bg-gradient-to-r from-teal-600 to-indigo-900 text-white fixed w-full z-10 shadow-lg">
+  <nav class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white fixed w-full z-10 shadow-lg">
     <div class="container mx-auto px-4 py-4 flex justify-between items-center">
       <h1 class="text-xl font-bold flex items-center" data-aos="fade-down">
-        <i class="fas fa-briefcase mr-2 icon-transition text-teal-300"></i> Mackwin Joy Dsouza
+        <i class="fas fa-briefcase mr-2 icon-transition"></i> Mackwin Joy Dsouza
       </h1>
-      <div class="hamburger md:hidden flex flex-col cursor-pointer" onclick="toggleMenu()">
+      <div class="hamburger md:hidden flex flex-col cursor-pointer" onclick++;="toggleMenu()">
         <span class="bar block w-8 h-1 bg-white mb-2 transition-all duration-300"></span>
         <span class="bar block w-8 h-1 bg-white mb-2 transition-all duration-300"></span>
         <span class="bar block w-8 h-1 bg-white transition-all duration-300"></span>
       </div>
-      <ul id="nav-menu" class="nav-menu hidden md:flex md:flex-row md:space-x-6 md:items-center md:w-auto bg-gradient-to-r from-teal-600 to-indigo-900 flex-col items-center space-y-4 md:space-y-0 py-4 md:py-0" data-aos="fade-down" data-aos-delay="100">
-        <li><a href="#home" class="hover:text-teal-200 transition focus:outline-none focus:ring-2 focus:ring-teal-300 rounded" aria-label="Home"><i class="fas fa-home mr-1 icon-transition text-teal-300"></i> Home</a></li>
-        <li><a href="#about" class="hover:text-teal-200 transition focus:outline-none focus:ring-2 focus:ring-teal-300 rounded" aria-label="About"><i class="fas fa-user mr-1 icon-transition text-teal-300"></i> About</a></li>
-        <li><a href="#skills" class="hover:text-teal-200 transition focus:outline-none focus:ring-2 focus:ring-teal-300 rounded" aria-label="Skills"><i class="fas fa-tools mr-1 icon-transition text-teal-300"></i> Skills</a></li>
-        <li><a href="#experience" class="hover:text-teal-200 transition focus:outline-none focus:ring-2 focus:ring-teal-300 rounded" aria-label="Experience"><i class="fas fa-suitcase mr-1 icon-transition text-teal-300"></i> Experience</a></li>
-        <li><a href="#education" class="hover:text-teal-200 transition focus:outline-none focus:ring-2 focus:ring-teal-300 rounded" aria-label="Education"><i class="fas fa-graduation-cap mr-1 icon-transition text-teal-300"></i> Education</a></li>
-        <li><a href="#contact" class="hover:text-teal-200 transition focus:outline-none focus:ring-2 focus:ring-teal-300 rounded" aria-label="Contact"><i class="fas fa-envelope mr-1 icon-transition text-teal-300"></i> Contact</a></li>
+      <ul id="nav-menu" class="nav-menu hidden md:flex md:flex-row md:space-x-6 md:items-center md:w-auto bg-gradient-to-r from-blue-600 to-indigo-600 flex-col items-center space-y-4 md:space-y-0 py-4 md:py-0" data-aos="fade-down" data-aos-delay="100">
+        <li><a href="#home" class="hover:text-yellow-300 transition focus:outline-none focus:ring-2 focus:ring-yellow-300 rounded" aria-label="Home"><i class="fas fa-home mr-1 icon-transition"></i> Home</a></li>
+        <li><a href="#about" class="hover:text-yellow-300 transition focus:outline-none focus:ring-2 focus:ring-yellow-300 rounded" aria-label="About"><i class="fas fa-user mr-1 icon-transition"></i> About</a></li>
+        <li><a href="#skills" class="hover:text-yellow-300 transition focus:outline-none focus:ring-2 focus:ring-yellow-300 rounded" aria-label="Skills"><i class="fas fa-tools mr-1 icon-transition"></i> Skills</a></li>
+        <li><a href="#experience" class="hover:text-yellow-300 transition focus:outline-none focus:ring-2 focus:ring-yellow-300 rounded" aria-label="Experience"><i class="fas fa-suitcase mr-1 icon-transition"></i> Experience</a></li>
+        <li><a href="#education" class="hover:text-yellow-300 transition focus:outline-none focus:ring-2 focus:ring-yellow-300 rounded" aria-label="Education"><i class="fas fa-graduation-cap mr-1 icon-transition"></i> Education</a></li>
+        <li><a href="#contact" class="hover:text-yellow-300 transition focus:outline-none focus:ring-2 focus:ring-yellow-300 rounded" aria-label="Contact"><i class="fas fa-envelope mr-1 icon-transition"></i> Contact</a></li>
       </ul>
     </div>
   </nav>
 
   <!-- Hero Section with Lottie and Typed.js -->
-  <section id="home" class="min-h-[70vh] flex items-center justify-center bg-section hero-section" style="background-image: url('https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');" data-aos="fade-in">
+  <section id="home" class="min-h-[80vh] flex items-center justify-center bg-section hero-section" style="background-image: url('https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');" data-aos="fade-in">
     <div class="text-center text-white bg-black bg-opacity-70 p-6 rounded-lg">
       <div class="lottie-animation" id="hero-lottie"></div>
       <h1 class="text-3xl sm:text-4xl font-bold mb-4" data-aos="fade-up" data-aos-delay="100">Mackwin Joy Dsouza</h1>
       <p class="text-lg sm:text-xl mb-6 typed-text" id="typed-text" data-aos="fade-up" data-aos-delay="200"></p>
-      <a href="#contact" class="gradient-btn px-6 py-3 rounded-full font-semibold focus:outline-none focus:ring-2 focus:ring-teal-300" aria-label="Contact Me" data-aos="fade-up" data-aos-delay="300">Get in Touch</a>
+      <a href="#contact" class="gradient-btn px-6 py-3 rounded-full font-semibold focus:outline-none focus:ring-2 focus:ring-yellow-300" aria-label="Contact Me" data-aos="fade-up" data-aos-delay="300">Get in Touch</a>
       <p class="text-sm italic mt-4" data-aos="fade-up" data-aos-delay="400">Scroll down to explore my journey ↓</p>
     </div>
   </section>
@@ -321,7 +356,7 @@
   <section id="about" class="section-padding py-12 bg-white dark:bg-gray-800" data-aos="fade-in">
     <div class="container mx-auto px-4">
       <h2 class="text-2xl sm:text-3xl font-bold text-center mb-8 flex items-center justify-center" data-aos="zoom-in" data-aos-delay="100">
-        <i class="fas fa-user-circle text-teal-500 mr-2 icon-transition"></i> About Me
+        <i class="fas fa-user-circle text-indigo-500 mr-2 icon-transition"></i> About Me
       </h2>
       <div class="flex flex-col lg:flex-row items-center lg:items-start gap-8">
         <div class="lg:w-1/2 flex flex-col items-center">
@@ -333,7 +368,7 @@
         <div class="lg:w-1/2 space-y-6">
           <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg card-hover" data-aos="slide-up" data-aos-delay="400">
             <div class="flex items-center mb-3">
-              <i class="fas fa-suitcase text-2xl text-teal-500 mr-3 icon-transition"></i>
+              <i class="fas fa-suitcase text-2xl text-blue-500 mr-3 icon-transition"></i>
               <h3 class="text-lg font-semibold">Experience</h3>
             </div>
             <p class="text-sm">1+ year as a Business Development Executive, generating 150+ B2B leads and conducting 50+ ERP software demos for C-level executives.</p>
@@ -352,7 +387,7 @@
             </div>
             <div class="grid grid-cols-2 gap-4 text-center">
               <div>
-                <p class="text-2xl font-bold text-teal-600 counter" data-target="150">0</p>
+                <p class="text-2xl font-bold text-blue-600 counter" data-target="150">0</p>
                 <p class="text-xs">B2B Leads Generated</p>
               </div>
               <div>
@@ -360,13 +395,13 @@
                 <p class="text-xs">ERP Demos Conducted</p>
               </div>
               <div>
-                <p class="text-2xl font-bold text-indigo-600 counter" data-target="40">0</p>
+                <p class="text-2xl font-bold text-purple-600 counter" data-target="40">0</p>
                 <p class="text-xs">Client Engagement (%)</p>
               </div>
             </div>
           </div>
           <div class="text-center mt-4" data-aos="fade-up" data-aos-delay="700">
-            <a href="https://raw.githubusercontent.com/mackwinjoy/mackwin.portfolio/bb81de3b60fb847d1b5c8ec724f9af0d606e630d/MackwinJoyResume.pdf" download class="gradient-btn px-4 py-2 rounded-full font-semibold inline-flex items-center focus:outline-none focus:ring-2 focus:ring-teal-300 text-sm" aria-label="Download Resume">
+            <a href="https://raw.githubusercontent.com/mackwinjoy/mackwin.portfolio/bb81de3b60fb847d1b5c8ec724f9af0d606e630d/MackwinJoyResume.pdf" download class="gradient-btn px-4 py-2 rounded-full font-semibold inline-flex items-center focus:outline-none focus:ring-2 focus:ring-yellow-300 text-sm" aria-label="Download Resume">
               <i class="fas fa-download mr-2 icon-transition"></i> Download Resume
             </a>
           </div>
@@ -391,7 +426,7 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
         <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg card-hover" data-aos="fade-right" data-aos-delay="200">
           <h3 class="text-lg font-semibold mb-3 flex items-center">
-            <i class="fas fa-chart-pie mr-2 text-teal-500 icon-transition"></i> Skill Proficiency
+            <i class="fas fa-chart-pie mr-2 text-blue-500 icon-transition"></i> Skill Proficiency
           </h3>
           <div class="chart-container">
             <canvas id="skillsPieChart"></canvas>
@@ -406,13 +441,13 @@
           </div>
           <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg card-hover" data-aos="fade-left" data-aos-delay="400">
             <p class="text-sm font-semibold flex items-center">
-              <i class="fas fa-handshake mr-2 text-teal-500 icon-transition"></i> Sales Negotiation
+              <i class="fas fa-handshake mr-2 text-blue-500 icon-transition"></i> Sales Negotiation
             </p>
             <div class="progress-bar"><div class="progress-fill" style="width: 0;" data-width="80"></div></div>
           </div>
           <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg card-hover" data-aos="fade-left" data-aos-delay="500">
             <p class="text-sm font-semibold flex items-center">
-              <i class="fas fa-database mr-2 text-indigo-500 icon-transition"></i> CRM Tools (Zoho, Odoo)
+              <i class="fas fa-database mr-2 text-purple-500 icon-transition"></i> CRM Tools (Zoho, Odoo)
             </p>
             <div class="progress-bar"><div class="progress-fill" style="width: 0;" data-width="90"></div></div>
           </div>
@@ -430,11 +465,11 @@
           <h3 class="text-sm font-semibold">Lead Generation & Prospecting</h3>
         </div>
         <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg card-hover" data-aos="fade-up" data-aos-delay="150">
-          <i class="fas fa-handshake text-2xl text-teal-500 mb-3 icon-transition"></i>
+          <i class="fas fa-handshake text-2xl text-blue-500 mb-3 icon-transition"></i>
           <h3 class="text-sm font-semibold">Sales Negotiation & Deal Closure</h3>
         </div>
         <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg card-hover" data-aos="fade-up" data-aos-delay="200">
-          <i class="fas fa-briefcase text-2xl text-indigo-500 mb-3 icon-transition"></i>
+          <i class="fas fa-briefcase text-2xl text-purple-500 mb-3 icon-transition"></i>
           <h3 class="text-sm font-semibold">B2B Sales & Strategic Partnerships</h3>
         </div>
         <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg card-hover" data-aos="fade-up" data-aos-delay="250">
@@ -462,11 +497,11 @@
           <h3 class="text-sm font-semibold">Cold Calling & Email Campaigns</h3>
         </div>
         <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg card-hover" data-aos="fade-up" data-aos-delay="550">
-          <i class="fas fa-table text-2xl text-teal-500 mb-3 icon-transition"></i>
+          <i class="fas fa-table text-2xl text-blue-500 mb-3 icon-transition"></i>
           <h3 class="text-sm font-semibold">Data Analysis & Reporting</h3>
         </div>
         <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg card-hover" data-aos="fade-up" data-aos-delay="600">
-          <i class="fas fa-microphone text-2xl text-indigo-500 mb-3 icon-transition"></i>
+          <i class="fas fa-microphone text-2xl text-purple-500 mb-3 icon-transition"></i>
           <h3 class="text-sm font-semibold">Presentation & Communication Skills</h3>
         </div>
         <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg card-hover" data-aos="fade-up" data-aos-delay="650">
@@ -500,12 +535,12 @@
   <section id="experience" class="section-padding py-12 bg-white dark:bg-gray-800 bg-section" style="background-image: url('https://images.unsplash.com/photo-1516321310768-90f0fdce4b04?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');" data-aos="fade-in">
     <div class="container mx-auto px-4">
       <h2 class="text-2xl sm:text-3xl font-bold text-center mb-8 flex items-center justify-center" data-aos="zoom-in" data-aos-delay="100">
-        <i class="fas fa-suitcase text-teal-500 mr-2 icon-transition"></i> Experience
+        <i class="fas fa-suitcase text-blue-500 mr-2 icon-transition"></i> Experience
       </h2>
       <div class="space-y-6">
         <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg card-hover bg-opacity-90" data-aos="slide-right" data-aos-delay="200">
           <h3 class="text-lg font-semibold flex items-center">
-            <i class="fas fa-building mr-2 text-teal-500 icon-transition"></i> Invenger Technologies Inc.
+            <i class="fas fa-building mr-2 text-indigo-500 icon-transition"></i> Invenger Technologies Inc.
           </h3>
           <p class="text-gray-600 dark:text-gray-400 text-sm">Jul 2024 – Present</p>
           <ul class="list-disc ml-6 mt-3 text-sm">
@@ -517,13 +552,15 @@
             <li>Conducted market analysis and competitor research, refining value propositions to support sales strategies.</li>
             <li>Maintained CRM systems to track leads, manage interactions, and generate insights for sales forecasting.</li>
           </ul>
-          <div class="chart-container mt-4" data-aos="fade-up" data-aos-delay="300">
+        </div>
+        <div class="chart-section" data-aos="fade-up" data-aos-delay="300">
+          <div class="chart-container">
             <canvas id="experienceBarChart"></canvas>
           </div>
         </div>
         <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg card-hover bg-opacity-90" data-aos="slide-left" data-aos-delay="400">
           <h3 class="text-lg font-semibold flex items-center">
-            <i class="fas fa-building mr-2 text-teal-500 icon-transition"></i> Acrene Solutions Private Limited
+            <i class="fas fa-building mr-2 text-indigo-500 icon-transition"></i> Acrene Solutions Private Limited
           </h3>
           <p class="text-gray-600 dark:text-gray-400 text-sm">Previous Role</p>
           <ul class="list-disc ml-6 mt-3 text-sm">
@@ -547,14 +584,14 @@
   <section id="education" class="section-padding py-12 bg-gray-100 dark:bg-gray-700 bg-section" style="background-image: url('https://images.unsplash.com/photo-1524178232363-64f36cf33d79?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');" data-aos="fade-in">
     <div class="container mx-auto px-4">
       <h2 class="text-2xl sm:text-3xl font-bold text-center mb-8 flex items-center justify-center" data-aos="zoom-in" data-aos-delay="100">
-        <i class="fas fa-graduation-cap text-indigo-500 mr-2 icon-transition"></i> Education & Certifications
+        <i class="fas fa-graduation-cap text-purple-500 mr-2 icon-transition"></i> Education & Certifications
       </h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg card-hover bg-opacity-90" data-aos="slide-right" data-aos-delay="200">
           <h3 class="text-lg font-semibold flex items-center">
-            <i class="fas fa-university mr-2 text-teal-500 icon-transition"></i> Education
+            <i class="fas fa-university mr-2 text-blue-500 icon-transition"></i> Education
           </h3>
-          <p class="mt-2 text-sm"><strong>MBA (Finance & Marketing)</strong> - Sahyadri College (2022–2024) | CGPA: 8.46</p>
+          <p class="mt-2 text-sm"><strong>MBA (Marketing)</strong> - Sahyadri College (2022–2024) | CGPA: 8.46</p>
           <p class="mt-2 text-sm"><strong>Bachelor of Commerce</strong> - MGM College, Udupi (2019–2022) | 74.4%</p>
         </div>
         <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg card-hover bg-opacity-90" data-aos="slide-left" data-aos-delay="300">
@@ -575,35 +612,35 @@
   <!-- Wave Separator -->
   <div class="w-full overflow-hidden leading-none">
     <svg class="w-full h-16" viewBox="0 0 1200 120" preserveAspectRatio="none">
-      <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113.64,0,1200,0Z" fill="#0d9488" class="dark:fill-gray-900"></path>
+      <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113.64,0,1200,0Z" fill="#4b5bd4" class="dark:fill-gray-900"></path>
     </svg>
   </div>
 
   <!-- Contact Section with Lottie -->
-  <section id="contact" class="section-padding py-12 text-white contact-section" style="background: linear-gradient(45deg, #0d9488, #1e3a8a, #0d9488); background-size: 200% 200%; animation: backgroundWave 15s ease infinite;" data-aos="fade-in">
+  <section id="contact" class="section-padding py-12 text-white contact-section" style="background: linear-gradient(45deg, #4b5bd4, #6a1b9a, #4b5bd4); background-size: 200% 200%; animation: backgroundWave 15s ease infinite;" data-aos="fade-in">
     <div class="container mx-auto px-4 text-center">
       <h2 class="text-2xl sm:text-3xl font-bold mb-8 flex items-center justify-center" data-aos="zoom-in" data-aos-delay="100">
-        <i class="fas fa-envelope-open-text text-teal-300 mr-2 icon-transition"></i> Contact Me
+        <i class="fas fa-envelope-open-text text-yellow-400 mr-2 icon-transition"></i> Contact Me
       </h2>
       <div class="lottie-animation mb-6" id="contact-lottie" data-aos="fade-up" data-aos-delay="200"></div>
       <div class="flex flex-col items-center space-y-3" data-aos="fade-up" data-aos-delay="300">
         <p class="flex items-center text-sm">
-          <i class="fas fa-envelope mr-2 text-teal-400 icon-transition"></i>
-          <a href="mailto:dsouzamackwinjoy@gmail.com" class="hover:text-teal-200 hover:underline transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-teal-300" aria-label="Email Mackwin Joy Dsouza">dsouzamackwinjoy@gmail.com</a>
+          <i class="fas fa-envelope mr-2 text-green-400 icon-transition"></i>
+          <a href="mailto:dsouzamackwinjoy@gmail.com" class="hover:text-yellow-300 hover:underline transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-yellow-300" aria-label="Email Mackwin Joy Dsouza">dsouzamackwinjoy@gmail.com</a>
         </p>
         <p class="flex items-center text-sm">
-          <i class="fas fa-phone mr-2 text-teal-400 icon-transition"></i> 9901179203
+          <i class="fas fa-phone mr-2 text-blue-400 icon-transition"></i> 9901179203
         </p>
         <p class="flex items-center text-sm">
-          <i class="fas fa-passport mr-2 text-indigo-400 icon-transition"></i>
-          <span class="hover:text-teal-200 hover:underline transition-all duration-300">Y4773735</span>
+          <i class="fas fa-passport mr-2 text-purple-400 icon-transition"></i>
+          <span class="hover:text-yellow-300 hover:underline transition-all duration-300">Y4773735</span>
         </p>
         <p class="flex items-center text-sm">
           <i class="fas fa-map-marker-alt mr-2 text-red-400 icon-transition"></i> Sunview Posarma House, Pilar Village, Mudarangadi
         </p>
         <p class="flex items-center text-sm">
-          <i class="fab fa-linkedin mr-2 text-teal-400 icon-transition"></i>
-          <a href="https://www.linkedin.com/in/mackwin-joy-dsouza" target="_blank" class="underline hover:text-teal-200 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-teal-300" aria-label="LinkedIn Profile">mackwin-joy-dsouza</a>
+          <i class="fab fa-linkedin mr-2 text-indigo-400 icon-transition"></i>
+          <a href="https://www.linkedin.com/in/mackwin-joy-dsouza" target="_blank" class="underline hover:text-yellow-300 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-yellow-300" aria-label="LinkedIn Profile">mackwin-joy-dsouza</a>
         </p>
       </div>
       <div class="mt-6" data-aos="fade-up" data-aos-delay="400">
@@ -732,7 +769,7 @@
         labels: ['Lead Generation', 'Sales Negotiation', 'CRM Tools', 'Market Research'],
         datasets: [{
           data: [85, 80, 90, 75],
-          backgroundColor: ['#0d9488', '#1e3a8a', '#f59e0b', '#ef4444'],
+          backgroundColor: ['#4b5bd4', '#6a1b9a', '#f59e0b', '#ef4444'],
           borderWidth: 1
         }]
       },
@@ -745,15 +782,23 @@
             labels: {
               color: document.documentElement.classList.contains('dark') ? '#e5e7eb' : '#1f2937',
               font: {
-                size: window.innerWidth < 640 ? 10 : 12
+                size: window.innerWidth < 480 ? 10 : 12
               },
-              padding: 10
+              padding: window.innerWidth < 480 ? 10 : 20
             }
           }
         },
         animation: {
           animateScale: true,
           animateRotate: true
+        },
+        layout: {
+          padding: {
+            top: 10,
+            bottom: 10,
+            left: 10,
+            right: 10
+          }
         }
       }
     });
@@ -766,8 +811,8 @@
         datasets: [{
           label: 'Achievements (%)',
           data: [30, 40],
-          backgroundColor: ['#0d9488', '#f59e0b'],
-          borderColor: ['#0d9488', '#f59e0b'],
+          backgroundColor: ['#4b5bd4', '#f59e0b'],
+          borderColor: ['#4b5bd4', '#f59e0b'],
           borderWidth: 1
         }]
       },
@@ -781,7 +826,7 @@
             ticks: {
               color: document.documentElement.classList.contains('dark') ? '#e5e7eb' : '#1f2937',
               font: {
-                size: window.innerWidth < 640 ? 8 : 10
+                size: window.innerWidth < 480 ? 8 : 10
               }
             }
           },
@@ -789,7 +834,7 @@
             ticks: {
               color: document.documentElement.classList.contains('dark') ? '#e5e7eb' : '#1f2937',
               font: {
-                size: window.innerWidth < 640 ? 8 : 10
+                size: window.innerWidth < 480 ? 8 : 10
               }
             }
           }
@@ -799,7 +844,7 @@
             labels: {
               color: document.documentElement.classList.contains('dark') ? '#e5e7eb' : '#1f2937',
               font: {
-                size: window.innerWidth < 640 ? 10 : 12
+                size: window.innerWidth < 480 ? 10 : 12
               }
             }
           }
@@ -807,6 +852,14 @@
         animation: {
           duration: 1000,
           easing: 'easeOutBounce'
+        },
+        layout: {
+          padding: {
+            top: 10,
+            bottom: 10,
+            left: 10,
+            right: 10
+          }
         }
       }
     });
